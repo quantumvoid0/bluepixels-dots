@@ -1,0 +1,142 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 35,
+  "width": 1890,
+  "spacing": 5,
+  "margin-bottom" :-10,
+  "margin-right" :8,
+  "margin-left" :8,
+
+  "modules-left": [
+    "custom/wofi",
+    "hyprland/workspaces",
+    "hyprland/window",
+  ],
+
+  "modules-center": [
+    "mpris",
+    "clock#time",
+    
+   ],
+
+  "modules-right": [
+    "pulseaudio",
+    "bluetooth",
+    "custom/wifi",
+    "custom/notification",
+  ],
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "active-only": false,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "<span color='#7e7eaa' >◆</span>",
+      "2": "<span color='#668fa0' >◆</span>",
+      "3": "<span color='#7f80aa' >◆</span>",
+      "default": "<span color='#7e7eaa'>◆</span>",
+    },
+    "persistent-workspaces": {
+        "*": 1
+    }
+  },
+
+  "hyprland/window": {
+    "format": "{class}",
+    "max-length": 20,
+    "rewrite": {
+      "": "<span foreground= '#458588'></span> hyprland",
+      "~": " terminal",
+      "com.mitchellh.ghostty": ">> ghostty",
+      "zen-beta": ">> zen"
+    }
+  },
+
+
+  "pulseaudio": {
+    "format": "<span color='#fbf1c7' ></span>{volume}%",
+    "format-muted": "<span color='#fbf1c7' ></span>{volume}%",
+    "format-bluetooth": "<span color='#fbf1c7' ></span>{volume}%",
+    "format-bluetooth-muted": "<span color='#fbf1c7' ></span>{volume}%",
+    "format-source": "{volume}%",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "tooltip": false,
+    "max-volume": 130
+  },
+
+  "clock#time": {
+    "format": "<span color='#cc241d' ></span>{:%I:%M %p - %a %d %b}",
+    "tooltip": false,
+    "min-length": 8,
+    "max-length": 30
+  },
+
+
+  "custom/paddc": {
+    "format": " ",
+    "tooltip": false,
+  },
+
+  "mpris": {
+    "format": "<span color='#cc241d'></span>  {artist} - {title}  ",
+    "max-length": 40,
+  },
+
+  "custom/wifi": {
+    "return-type": "json",
+    "format": "ᯤ",
+    "tooltip": true,
+    "on-click": "nm-connection-editor",
+    "interval": 1,
+    "min-length": 1,
+    "max-length": 12
+  },
+
+  "bluetooth": {
+    "format": "<span></span>",
+    "format-disabled": "<span></span>",
+    "format-connected": "<span></span>",
+    "format-connected-battery": "<span> low/span>",
+
+    "tooltip-format": 
+      "{num_connections} connected",
+    "tooltip-format-disabled": 
+      "Bluetooth Disabled",
+    "tooltip-format-connected": 
+      "{num_connections} connected\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": 
+      "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": 
+      "{device_alias}: {device_battery_percentage}%",
+
+    "on-click": "blueman-manager",
+    "interval": 1,
+    "min-length": 1,
+    "max-length": 10
+  },
+
+  "custom/notification": {
+    "tooltip": false,
+    "rotate": 0,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󰅸 ",
+      "none": "󰂜 ",
+      "dnd-notification": "󰅸 ",
+      "dnd-none": "󱏨 ",
+      "inhibited-notification": "󰅸 ",
+      "inhibited-none": "󰂜 ",
+      "dnd-inhibited-notification": "󰅸 ",
+      "dnd-inhibited-none": "󱏨 "
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click-right": "swaync-client -d -sw",
+    "on-click": "swaync-client -t -sw",
+    "escape": true
+  }
+}
